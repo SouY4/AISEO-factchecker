@@ -96,8 +96,23 @@ def main():
         print(f"  - Score: {result.get('score', 'N/A')}/100")
         print(f"  - Decision: {result.get('decision', 'N/A')}")
         print(f"  - Reason: {result.get('reason', 'N/A')}")
+        
+        # 類似度スコアの詳細表示
+        if 'score' in result and result['score'] is not None:
+            similarity_score = result['score'] / 100.0  # 0-1の範囲に変換
+            print(f"  - Similarity Score: {similarity_score:.3f} (Cosine similarity between sentence and top evidence)")
+        
+        # 参照元文章の詳細表示
         if 'evidence' in result and result['evidence']:
-             print(f"  - Top Evidence Source: {result['evidence'][0]['source']}")
+            print(f"  - Top Evidence Source: {result['evidence'][0]['source']}")
+            print(f"  - Top Evidence Text: \"{result['evidence'][0]['text'][:200]}...\"")  # 最初の200文字を表示
+            
+            # 追加の証拠があれば表示
+            if len(result['evidence']) > 1:
+                print(f"  - Additional Evidence Sources ({len(result['evidence'])-1} more):")
+                for i, evidence in enumerate(result['evidence'][1:], 2):
+                    print(f"    {i}. {evidence['source']}")
+                    print(f"       \"{evidence['text'][:150]}...\"")  # 最初の150文字を表示
 
 
 if __name__ == "__main__":

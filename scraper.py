@@ -43,7 +43,7 @@ def extract_text_from_urls(urls: List[str]) -> List[Dict[str, str]]:
     return documents
 
 if __name__ == '__main__':
-    # モジュールのテスト用コード
+    # モジュールのテスト用コードを実行
     test_urls = [
         "https://ja.wikipedia.org/wiki/%E5%A4%A7%E8%A6%8F%E6%A8%A1%E8%A8%80%E8%AA%9E%E3%83%A2%E3%83%87%E3%83%AB"
     ]
